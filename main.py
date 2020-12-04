@@ -20,8 +20,9 @@ def shorten_link(token, url):
     return bitlink
 
 def main():
+    user_input = input('Введите ссылку:')
     try:
-        link = shorten_link(os.getenv("TOKEN"), input('Введите ссылку:'))
+        link = shorten_link(os.getenv("TOKEN"), user_input)
     except requests.exceptions.HTTPError:
         print('Неправильная ссылка')
         return
