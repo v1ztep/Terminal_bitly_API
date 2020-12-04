@@ -20,7 +20,7 @@ def shorten_link(token, url):
     return link
 
 def main():
-    link = shorten_link(os.getenv("TOKEN"), URL)
+    link = shorten_link(os.getenv("TOKEN"), input('Введите ссылку:'))
 
     print(link)
 
