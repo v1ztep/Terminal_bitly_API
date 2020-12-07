@@ -6,8 +6,6 @@ from urllib.parse import urlparse
 
 load_dotenv()
 
-URL = "https://github.com/v1ztep"
-# URL = "https://bit.ly/37zk6d9"
 
 def shorten_link(token, url):
     headers = {
@@ -40,21 +38,22 @@ def strip_scheme(url):
 
 
 def main():
-    # user_input = input('Введите ссылку:')
-    user_input = URL
+    user_input = input('Введите ссылку: ')
     token = os.getenv("TOKEN")
 
-    if user_input.startswith("bit.ly", 8):
+    if user_input.startswith("bit.ly", 7) or user_input.startswith("bit.ly", 8):
         try:
             clicks_amount = count_clicks(token, user_input)
-            print(clicks_amount)
+            print(f'По вашей ссылке прошли {clicks_amount} раз(а)')
         except requests.exceptions.HTTPError:
             print('Неправильная ссылка')
             return
     else:
         try:
             link = shorten_link(token, user_input)
-            print(link)
+            clicks_amount = count_clicks(token, link)
+            print(f'Короткая ссылка: {link}')
+            print(f'По вашей ссылке прошли {clicks_amount} раз(а)')
         except requests.exceptions.HTTPError:
             print('Неправильная ссылка')
             return
