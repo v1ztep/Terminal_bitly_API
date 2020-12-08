@@ -4,10 +4,6 @@ import os
 from urllib.parse import urlparse
 
 
-URL = 'https://github.com/v1ztep'
-# URL = 'https://bit.ly/37zk6d9'
-
-
 def shorten_link(token, url):
     headers = {
         'Authorization': f'Bearer {token}',
@@ -18,8 +14,6 @@ def shorten_link(token, url):
                              headers=headers, json=data)
     response.raise_for_status()
     bitlink = response.json()["link"]
-    print(bitlink)
-
     return bitlink
 
 def count_clicks(token, bitlink):
@@ -54,8 +48,8 @@ def is_bitlink(token, url):
 
 def main():
     load_dotenv()
-    # user_input = input('Введите ссылку: ')
-    user_input = URL
+
+    user_input = input('Введите ссылку: ')
     token = os.getenv("BITLY_TOKEN")
 
     if is_bitlink(token, user_input):
