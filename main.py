@@ -6,6 +6,9 @@ from urllib.parse import urlparse
 
 load_dotenv()
 
+# URL = 'https://github.com/v1ztep'
+URL = 'https://bit.ly/37zk6d9'
+
 
 def shorten_link(token, url):
     headers = {
@@ -36,12 +39,25 @@ def strip_scheme(url):
     scheme = "%s://" % parsed.scheme
     return parsed.geturl().replace(scheme, '', 1)
 
+def is_bitlink(token, url):
+    headers = {
+        'Authorization': f'Bearer {token}',
+    }
+    try:
+        response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{strip_scheme(url)}',
+                                headers=headers)
+        response.raise_for_status()
+        return True
+    except requests.exceptions.HTTPError:
+        return False
+
 
 def main():
-    user_input = input('Введите ссылку: ')
+    # user_input = input('Введите ссылку: ')
+    user_input = URL
     token = os.getenv("BITLY_TOKEN")
 
-    if user_input.startswith("bit.ly", 7) or user_input.startswith("bit.ly", 8):
+    if is_bitlink(token, user_input):
         try:
             clicks_amount = count_clicks(token, user_input)
             print(f'По вашей ссылке прошли {clicks_amount} раз(а)')
@@ -51,9 +67,7 @@ def main():
     else:
         try:
             link = shorten_link(token, user_input)
-            clicks_amount = count_clicks(token, link)
             print(f'Короткая ссылка: {link}')
-            print(f'По вашей ссылке прошли {clicks_amount} раз(а)')
         except requests.exceptions.HTTPError:
             print('Неправильная ссылка')
             return
