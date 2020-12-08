@@ -30,8 +30,7 @@ def count_clicks(token, bitlink):
 
 def strip_scheme(url):
     parsed = urlparse(url)
-    scheme = "%s://" % parsed.scheme
-    return parsed.geturl().replace(scheme, '', 1)
+    return parsed.netloc + parsed.path
 
 def is_bitlink(token, url):
     headers = {
