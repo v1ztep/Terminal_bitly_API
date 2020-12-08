@@ -39,7 +39,7 @@ def strip_scheme(url):
 
 def main():
     user_input = input('Введите ссылку: ')
-    token = os.getenv("TOKEN")
+    token = os.getenv("BITLY_TOKEN")
 
     if user_input.startswith("bit.ly", 7) or user_input.startswith("bit.ly", 8):
         try:
