@@ -4,10 +4,9 @@ import os
 import json
 from urllib.parse import urlparse
 
-load_dotenv()
 
-# URL = 'https://github.com/v1ztep'
-URL = 'https://bit.ly/37zk6d9'
+URL = 'https://github.com/v1ztep'
+# URL = 'https://bit.ly/37zk6d9'
 
 
 def shorten_link(token, url):
@@ -53,6 +52,7 @@ def is_bitlink(token, url):
 
 
 def main():
+    load_dotenv()
     # user_input = input('Введите ссылку: ')
     user_input = URL
     token = os.getenv("BITLY_TOKEN")
