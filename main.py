@@ -36,13 +36,9 @@ def is_bitlink(token, url):
     headers = {
         'Authorization': f'Bearer {token}',
     }
-    try:
-        response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{strip_scheme(url)}',
-                                headers=headers)
-        response.raise_for_status()
-        return True
-    except requests.exceptions.HTTPError:
-        return False
+    response = requests.get(f'https://api-ssl.bitly.com/v4/bitlinks/{strip_scheme(url)}',
+                            headers=headers)
+    return response.ok
 
 
 def main():
