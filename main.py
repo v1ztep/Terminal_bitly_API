@@ -16,6 +16,7 @@ def shorten_link(token, url):
     bitlink = response.json()["link"]
     return bitlink
 
+
 def count_clicks(token, bitlink):
     headers = {
         'Authorization': f'Bearer {token}',
@@ -28,9 +29,11 @@ def count_clicks(token, bitlink):
     total_clicks = response.json()["total_clicks"]
     return total_clicks
 
+
 def strip_scheme(url):
     parsed = urlparse(url)
     return parsed.netloc + parsed.path
+
 
 def is_bitlink(token, url):
     headers = {
