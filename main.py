@@ -2,6 +2,15 @@ import requests
 from dotenv import load_dotenv
 import os
 from urllib.parse import urlparse
+import argparse
+
+
+def get_args():
+    parser = argparse.ArgumentParser(
+        description='Скрипт сокращает ссылки и показывает количество переходов (за все дни) через сервис bitly.com.'
+    )
+    parser.add_argument('link', default=False, help='Ссылка')
+    return parser.parse_args()
 
 
 def shorten_link(token, url):
@@ -46,8 +55,9 @@ def is_bitlink(token, url):
 
 def main():
     load_dotenv()
+    args = get_args()
 
-    user_input = input('Введите ссылку: ')
+    user_input = args.link
     token = os.getenv("BITLY_TOKEN")
 
     if is_bitlink(token, user_input):
