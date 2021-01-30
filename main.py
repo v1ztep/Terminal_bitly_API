@@ -9,7 +9,7 @@ def get_args():
     parser = argparse.ArgumentParser(
         description='Скрипт сокращает ссылки и показывает количество переходов (за все дни) через сервис bitly.com.'
     )
-    parser.add_argument('link', default=False, help='Ссылка')
+    parser.add_argument('link', help='Ссылка')
     return parser.parse_args()
 
 
