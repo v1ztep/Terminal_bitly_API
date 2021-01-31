@@ -60,20 +60,16 @@ def main():
     user_input = args.link
     token = os.getenv("BITLY_TOKEN")
 
-    if is_bitlink(token, user_input):
-        try:
+    try:
+        if is_bitlink(token, user_input):
             clicks_amount = count_clicks(token, user_input)
             print(f'По вашей ссылке прошли {clicks_amount} раз(а)')
-        except requests.exceptions.HTTPError:
-            print('Неправильная ссылка')
-            return
-    else:
-        try:
+        else:
             link = shorten_link(token, user_input)
             print(f'Короткая ссылка: {link}')
-        except requests.exceptions.HTTPError:
-            print('Неправильная ссылка')
-            return
+    except requests.exceptions.HTTPError:
+        print('Неправильная ссылка')
+        return
 
 
 if __name__ == '__main__':
