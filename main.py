@@ -41,7 +41,7 @@ def count_clicks(token, bitlink):
 
 def strip_scheme(url):
     parsed = urlparse(url)
-    return parsed.netloc + parsed.path
+    return f'{parsed.netloc}{parsed.path}'
 
 
 def is_bitlink(token, url):
