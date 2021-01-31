@@ -20,7 +20,7 @@ BITLY_TOKEN=ВАШ КЛЮЧ
 ```
 pip install -r requirements.txt
 ```
-- Запустите скрипт командой 
+- Запустите скрипт командой: 
 ```
 python main.py ЗНАЧЕНИЕ
 ```
