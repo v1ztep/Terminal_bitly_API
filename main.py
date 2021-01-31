@@ -69,7 +69,6 @@ def main():
             print(f'Короткая ссылка: {link}')
     except requests.exceptions.HTTPError:
         print('Неправильная ссылка')
-        return
 
 
 if __name__ == '__main__':
